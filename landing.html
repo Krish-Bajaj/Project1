@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-inverse">
+                <ul class="nav nav-tabs">          <!-- <ul class="nav navbar-nav navbar-right"></ul> -->
+                    <li class="logged-out" role="presentation" style="display: none;"><a id="myBtn1">Log In</a></li>
+                    <li class="logged-out" role="presentation" style="display: none;"><a id="myBtn2">Sign Up</a></li>
+                    <li class="logged-in" role="presentation"  style="display: none;"><a id="myBtn3">Log Out</a></li>
+                    <li class="logged-in" role="presentation"  style="display: none;"><a id="myBtn4">Create Complaint</a></li>
+                    <!-- <li><a id="myBtn5">Admin</a></li> -->
+                </ul>
+    </nav>
+    
+
+    <!-- Trigger/Open The Modal -->
+        <!-- <button id="myBtn1">Open Modal</button> --> <!-- Done on line no.16 -->
+
+        <!-- The Modal -->
+        <div id="myModal1" class="modal1">
+
+            <!-- Modal content -->
+            <div class="modal-content1">
+                <span class="close1">&times;</span>
+                <h2>Please enter your login Details!</h2>
+                <h4 div class="l_alert">Logged in successfully</h4>
+                <form id="loginForm">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="l_email" placeholder="Email"  required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="l_password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Log In</button>
+                    <!-- onclick="funcLogin()" -->
+                </form>
+
+            </div>
+        </div>
+        <div id="myModal2" class="modal2">
+    
+                <!-- Modal content -->
+                <div class="modal-content2">
+                    <span class="close2">&times;</span>
+                    <h2>Sign Up!</h2>
+                    <h4 div class="r_alert">You have successfully signed up</h4>
+                    <form  id="contactForm">
+                        <div class="form-group">
+                          <label for="exampleInputEmail2">Email address</label>
+                          <input type="email" class="form-control" id="r_email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword2">Password</label>
+                          <input type="password" class="form-control" id="r_password" placeholder="Password" required>
+                        </div>
+                        <button type="submit"   class="btn btn-primary">Sign Up</button>
+                        <!-- onclick="funcRegister()" -->
+                    </form>
+                </div>
+        </div>
+        <div id="myModal3" class="modal3">
+                <!-- Modal content -->
+                <div class="modal-content3">
+                    <span class="close3">&times;</span>
+                    <h2 div class="logout">You have Logged out successfully :)</h2>
+                </div>
+        </div>
+        <div id="myModal4" class="modal4">
+    
+                <!-- Modal content -->
+                <div class="modal-content4">
+                    <span class="close4">&times;</span>
+                    <h2>Please input your Complaint in the text-box provided below</h2>
+                    <h4 div class="c_alert">Complaint sent successfully!</h4>
+                    <form id="complaintForms">
+                        <div class="form-group">
+                        <label for="exampleInputEmail2">Complaint Title</label>
+                        <input type="text" class="form-control" id="title" placeholder="Title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword2">Complaint Content</label>
+                            <input type="text" class="form-control" id="content" placeholder="Complaint" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+        </div>
+        <div id="myModal5" class="modal5">
+    
+                <!-- Modal content -->
+                <div class="modal-content5">
+                    <span class="close5">&times;</span>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit distinctio</p>
+                </div>
+        </div>
+
+        <!-- <br> <br>
+        <div class="jumbotron">
+            <div class="container">
+                <h2>Complaint Section :-</h2>
+              </div>
+        </div> -->
+        <div class="page-header">
+            <h1>Complaints :-</h1>
+                <div class ="complaints">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        <h3 class="panel-title"></h3>
+                        </div>
+                        <div class="panel-body">
+                        <!-- log in button is not working proely -->
+                        </div>
+                        <div class="panel-heading">
+                            <h3 class="panel-title"></h3>
+                        </div>
+                        <div class="panel-body">
+                            <!-- log out button is not working properly -->
+                        </div>
+                    </div>
+                </div>
+          </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase.js"></script>
+    <script src="main.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
