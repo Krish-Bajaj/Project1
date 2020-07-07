@@ -17,6 +17,19 @@ var firebaseConfig = {
   // Making constants for authentication and database
   var auth = firebase.auth();
   var db = firebase.firestore();
+  var functions = firebase.functions();
+
+  // add Admin Cloud Function
+  const adminForms = document.querySelector('.adminForm');
+  adminForms.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const adminEmail = document.querySelector('#admin-email').value;
+      const addAdminRole = functions.httpsCallable('addAdminRole');
+      addAdminRole({email: adminEmail}).then(result => {
+        console.log(result);
+        document.querySelector('.adminForm').reset();
+      });
+  });
 
   //Creating a database with name Task1
   var messagesRef = firebase.database().ref('Task1');
@@ -24,10 +37,14 @@ var firebaseConfig = {
   // Keeping track of the users status
   auth.onAuthStateChanged(user => {
       if(user){
-            //Getting the data from firebase from firestore
-            db.collection('complaints').get().then(snapshot => {
-            setupComplaints(snapshot.docs);
-            setupUI(user);
+          //checking if an admin exists
+          user.getIdTokenResult().then(idTokenResult => {
+              user.admin = idTokenResult.claims.admin;
+          })
+          //Getting the data from firebase from firestore
+          db.collection('complaints').onSnapshot(snapshot => {
+          setupComplaints(snapshot.docs);
+          setupUI(user);
         });
       }else {
           setupComplaints([]);
@@ -50,23 +67,25 @@ function submitForm(e){
 
     saveMessage(r_email,r_pass);
 
-    // Show a alert(This code is for the green alert which pops up after clicking on the sign up button)
-    document.querySelector('.r_alert').style.display = 'block';
-
-    // hide alert after 3 seconds
-    setTimeout(function(){
-    document.querySelector('.r_alert').style.display = 'none';
-    },2000);
-
     // Not sure but i think this is the part of authentication that is actually signing up a new user in real time with firebase
     auth.createUserWithEmailAndPassword(r_email,r_pass).then(cred =>      //asynchronous task
         {
              //console.log('Signed Up');
              // Clearing the form after clicking sign up
-             document.getElementById('contactForm').reset();    
+             document.getElementById('contactForm').reset(); 
+             contactForm.querySelector('.error').innerHTML = '';   
+
+             // Show a alert(This code is for the green alert which pops up after clicking on the sign up button)
+            document.querySelector('.r_alert').style.display = 'block';
+
+            // hide alert after 3 seconds
+            setTimeout(function(){
+            document.querySelector('.r_alert').style.display = 'none';
+        },2000);
+        }).catch(err => {
+            contactForm.querySelector('.error').innerHTML = err.message;
         });
 }
-
 // Not sure but i think this is the part which stores the info in the real time database
 function saveMessage(r_email,r_pass){
     var newMessageRef = messagesRef.push();
@@ -86,17 +105,20 @@ function submitLoginForm(e){
     var l_email = loginForm['l_email'].value;
     var l_pass = loginForm['l_password'].value;
 
-    document.querySelector('.l_alert').style.display = 'block';
-    setTimeout(function(){
-        document.querySelector('.l_alert').style.display = 'none';
-    },2000);
-
     auth.signInWithEmailAndPassword(l_email, l_pass).then(cred => 
         {
         //console.log('Logged In');   
+        document.querySelector('.l_alert').style.display = 'block';
+    setTimeout(function(){
+        document.querySelector('.l_alert').style.display = 'none';
+    },2000);
         // Clearing the form after clicking logging in
          document.getElementById('loginForm').reset();
-      });  
+         loginForm.querySelector('.error').innerHTML = '';
+         
+      }).catch(err => {
+          loginForm.querySelector('.error').innerHTML = err.message;
+      });
 }
 
 // LOG OUT
@@ -127,9 +149,8 @@ function complaintForm(e){
         document.querySelector('.c_alert').style.display = 'block';
         setTimeout(function(){
             document.querySelector('.c_alert').style.display = 'none';
-            },2000);
+            },1000);
         document.getElementById('complaintForms').reset();
-        console.log('no error??')
     })
 // Video no.12 time 6:16 : Method he uses to clear the modal once he finishes using it
     

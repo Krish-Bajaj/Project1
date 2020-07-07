@@ -50,20 +50,20 @@ if (event.target == modal2) {
 }
 }
 
-var modal3 = document.getElementById("myModal3");
-var btn3 = document.getElementById("myBtn3");
-var span3 = document.getElementsByClassName("close3")[0];
-btn3.onclick = function() {
-modal3.style.display = "block";
-}
-span3.onclick = function() {
-modal3.style.display = "none";
-}
-window.onclick = function(event) {
-if (event.target == modal3) {
-    modal3.style.display = "none";
-}
-}
+// var modal3 = document.getElementById("myModal3");
+// var btn3 = document.getElementById("myBtn3");
+// var span3 = document.getElementsByClassName("close3")[0];
+// btn3.onclick = function() {
+// modal3.style.display = "block";
+// }
+// span3.onclick = function() {
+// modal3.style.display = "none";
+// }
+// window.onclick = function(event) {
+// if (event.target == modal3) {
+//     modal3.style.display = "none";
+// }
+// }
 
 var modal4 = document.getElementById("myModal4");
 var btn4 = document.getElementById("myBtn4");
@@ -80,20 +80,20 @@ if (event.target == modal4) {
 }
 }
 
-// var modal5 = document.getElementById("myModal5");
-// var btn5 = document.getElementById("myBtn5");
-// var span5 = document.getElementsByClassName("close5")[0];
-// btn5.onclick = function() {
-// modal5.style.display = "block";
-// }
-// span5.onclick = function() {
-// modal5.style.display = "none";
-// }
-// window.onclick = function(event) {
-// if (event.target == modal5) {
-//     modal5.style.display = "none";
-// }
-// }
+var modal5 = document.getElementById("myModal5");
+var btn5 = document.getElementById("myBtn5");
+var span5 = document.getElementsByClassName("close5")[0];
+btn5.onclick = function() {
+modal5.style.display = "block";
+}
+span5.onclick = function() {
+modal5.style.display = "none";
+}
+window.onclick = function(event) {
+if (event.target == modal5) {
+    modal5.style.display = "none";
+}
+}
 
 // function Login(){
 //     var vis = "loginForm";
@@ -104,15 +104,29 @@ if (event.target == modal4) {
 const complaintList = document.querySelector('.complaints');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
+const accountDetails = document.querySelector('.modal-content5');
+const adminItems = document.querySelectorAll('.admin');
 
 const setupUI = (user) => {
     if(user){
+        if(user.admin){
+            adminItems.forEach(item => item.style.display = 'block');
+        }
+        const html = `
+        <div><h2>Account Information</h2></div><br>
+        <div>Logged in as ${user.email}</div> <br>
+        <div>${user.admin ? 'Admin' : ''}</div>
+        `;
+        accountDetails.innerHTML = html;
         // Blocked means those elements will be shown
         loggedInLinks.forEach(item => item.style.display = 'block');
         loggedOutLinks.forEach(item => item.style.display = 'none');
     }else {
+        accountDetails.innerHTML = '';
+
         loggedInLinks.forEach(item => item.style.display = 'none');
         loggedOutLinks.forEach(item => item.style.display = 'block');
+        adminItems.forEach(item => item.style.display = 'none');
     }
 }
 

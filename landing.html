@@ -17,10 +17,14 @@
                     <li class="logged-out" role="presentation" style="display: none;"><a id="myBtn2">Sign Up</a></li>
                     <li class="logged-in" role="presentation"  style="display: none;"><a id="myBtn3">Log Out</a></li>
                     <li class="logged-in" role="presentation"  style="display: none;"><a id="myBtn4">Create Complaint</a></li>
-                    <!-- <li><a id="myBtn5">Admin</a></li> -->
+                    <li class="logged-in" role="presentation"  style="display: none;"><a id="myBtn5" class="account">Account</a></li>
                 </ul>
     </nav>
     
+    <form class="adminForm admin">
+        <input type="email" class="form-control" placeholder="User Email" id="admin-email" required> <br>
+        <button type="submit" class="btn btn-primary">Make Admin</button>
+    </form>
 
     <!-- Trigger/Open The Modal -->
         <!-- <button id="myBtn1">Open Modal</button> --> <!-- Done on line no.16 -->
@@ -43,6 +47,7 @@
                       <input type="password" class="form-control" id="l_password" placeholder="Password" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Log In</button>
+                    <p class="error"></p>
                     <!-- onclick="funcLogin()" -->
                 </form>
 
@@ -65,17 +70,17 @@
                           <input type="password" class="form-control" id="r_password" placeholder="Password" required>
                         </div>
                         <button type="submit"   class="btn btn-primary">Sign Up</button>
+                        <p class="error"></p>
                         <!-- onclick="funcRegister()" -->
                     </form>
                 </div>
         </div>
-        <div id="myModal3" class="modal3">
-                <!-- Modal content -->
+        <!-- <div id="myModal3" class="modal3">
                 <div class="modal-content3">
                     <span class="close3">&times;</span>
                     <h2 div class="logout">You have Logged out successfully :)</h2>
                 </div>
-        </div>
+        </div> -->
         <div id="myModal4" class="modal4">
     
                 <!-- Modal content -->
@@ -101,16 +106,10 @@
                 <!-- Modal content -->
                 <div class="modal-content5">
                     <span class="close5">&times;</span>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit distinctio</p>
+                    <h2>Account Information</h2>
                 </div>
         </div>
-
-        <!-- <br> <br>
-        <div class="jumbotron">
-            <div class="container">
-                <h2>Complaint Section :-</h2>
-              </div>
-        </div> -->
+        
         <div class="page-header">
             <h1>Complaints :-</h1>
                 <div class ="complaints">
