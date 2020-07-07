@@ -5,18 +5,21 @@
      padding-right:115px;
 } */
 
+/*These are the comments of main.css below this*/
+
+
 /* Changing the properties of the buttons */
-#myBtn1,#myBtn2,#myBtn3,#myBtn4,#myBtn5 {
+#myBtn1,#myBtn2,#myBtn3,#myBtn4,#myBtn5 {       /*the way to call id's is a #*/
      /* background-color: #222222; */
      color: rgb(255, 255, 255);
      text-align: center;
-     height:50px;
+     height:50px;/*All by hit and trial method*/
      width:200px;
      font-family:Arial;
 }
 
 /* The Modal (background) */
-.modal1, .modal2, .modal3, .modal4, .modal5{
+.modal1, .modal2, .modal3, .modal4, .modal5{  /*Styling of the background of the modal*/
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -30,7 +33,7 @@
 }
 
 /* Modal Content/Box */
-.modal-content1, .modal-content2, .modal-content3, .modal-content4, .modal-content5 {
+.modal-content1, .modal-content2, .modal-content3, .modal-content4, .modal-content5 {  /*Styling of the modal itself*/
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -39,14 +42,14 @@
 }
 
 /* The Close Button */
-.close1, .close2, .close3, .close4, .close5 {
+.close1, .close2, .close3, .close4, .close5 { /*Styling of the small x buttons when u open a modal*/
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close1:hover,
+.close1:hover,        /*memorize*/
 .close1:focus {
     color: black;
     text-decoration: none;
@@ -78,7 +81,7 @@
 }
 
 /* For the alert */
-.r_alert, .l_alert, .c_alert{
+.r_alert, .l_alert, .c_alert{      /*Styling of the green alert which pops up*/
     text-align: center;
     padding:10px ;
     background: #79c879;

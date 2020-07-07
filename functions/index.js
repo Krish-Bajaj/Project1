@@ -1,3 +1,6 @@
+// The coding part for crating an Admin i would suggest to by heart this if possible 
+// this affects the functions part in firebase and under that logs also is affected i think
+
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();

@@ -1,5 +1,7 @@
 // Firebase coding
 // Your web app's Firebase configuration
+
+//THIS all u get from firebase till line 17
 var firebaseConfig = {
     apiKey: "AIzaSyB3d2d_FlGFk3dnRpBhUG1MJDltfBubw9Y",
     authDomain: "krish-b2b3c.firebaseapp.com",
@@ -14,20 +16,23 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
-  // Making constants for authentication and database
+  // Making constants for authentication and database and functions
+  // These are basically variables for the diff functions we import on line 139 of landing.html in that however i called everything
   var auth = firebase.auth();
   var db = firebase.firestore();
   var functions = firebase.functions();
 
+
   // add Admin Cloud Function
-  const adminForms = document.querySelector('.adminForm');
-  adminForms.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const adminEmail = document.querySelector('#admin-email').value;
-      const addAdminRole = functions.httpsCallable('addAdminRole');
-      addAdminRole({email: adminEmail}).then(result => {
+  // Coding for the admin part of the page
+  const adminForms = document.querySelector('.adminForm');  //got a reference to the adminForm when u r an admin
+  adminForms.addEventListener('submit', (e) => {  //line 29 and 30 is reqd to listen to a submit button 
+      e.preventDefault();  //imp line
+      const adminEmail = document.querySelector('#admin-email').value; //getting the email the admin enters
+      const addAdminRole = functions.httpsCallable('addAdminRole');    //addAdminRole is a func we have defined in index.js
+      addAdminRole({email: adminEmail}).then(result => {       // Didnt quite understand lines 32 33        ************************************
         console.log(result);
-        document.querySelector('.adminForm').reset();
+        document.querySelector('.adminForm').reset();           //resets the form
       });
   });
 
@@ -35,15 +40,17 @@ var firebaseConfig = {
   var messagesRef = firebase.database().ref('Task1');
 
   // Keeping track of the users status
-  auth.onAuthStateChanged(user => {
-      if(user){
+  // Most important part
+  auth.onAuthStateChanged(user => {              //onAuthStateChanged basically tells us if theres a user logged in or no when we opened that page
+      if(user){  // same as if(user==true)
           //checking if an admin exists
+          //extra line of codes which lets us know if the user which is logged in is an admin or no
           user.getIdTokenResult().then(idTokenResult => {
               user.admin = idTokenResult.claims.admin;
           })
           //Getting the data from firebase from firestore
-          db.collection('complaints').onSnapshot(snapshot => {
-          setupComplaints(snapshot.docs);
+          db.collection('complaints').onSnapshot(snapshot => {    //if its a user this code gets all the complaints and displays it 
+          setupComplaints(snapshot.docs);                         //on the site which is actually done by the func setupUI()
           setupUI(user);
         });
       }else {
@@ -62,10 +69,10 @@ var firebaseConfig = {
 function submitForm(e){
     e.preventDefault();
 
-    var r_email = contactForm['r_email'].value;
+    var r_email = contactForm['r_email'].value;      //storing the values we receive
     var r_pass = contactForm['r_password'].value;
 
-    saveMessage(r_email,r_pass);
+    saveMessage(r_email,r_pass); // saves it in the database Task1 we created above
 
     // Not sure but i think this is the part of authentication that is actually signing up a new user in real time with firebase
     auth.createUserWithEmailAndPassword(r_email,r_pass).then(cred =>      //asynchronous task
@@ -73,7 +80,7 @@ function submitForm(e){
              //console.log('Signed Up');
              // Clearing the form after clicking sign up
              document.getElementById('contactForm').reset(); 
-             contactForm.querySelector('.error').innerHTML = '';   
+             contactForm.querySelector('.error').innerHTML = '';    //ask this line ******************************************************
 
              // Show a alert(This code is for the green alert which pops up after clicking on the sign up button)
             document.querySelector('.r_alert').style.display = 'block';
@@ -82,6 +89,7 @@ function submitForm(e){
             setTimeout(function(){
             document.querySelector('.r_alert').style.display = 'none';
         },2000);
+        //code for the error message which is displayed below
         }).catch(err => {
             contactForm.querySelector('.error').innerHTML = err.message;
         });
@@ -132,7 +140,7 @@ const logout = document.querySelector('#myBtn3');
 
 // CREATING A COMPLAINT
 
-const createForm = document.querySelector('complaintForms');
+const createForm = document.querySelector('complaintForms');   // Dont think we need this line *******************************************
 
 document.getElementById('complaintForms').addEventListener('submit',complaintForm);
 

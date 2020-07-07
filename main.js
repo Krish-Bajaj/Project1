@@ -103,10 +103,11 @@ if (event.target == modal5) {
 // Code for the info in the complaints
 const complaintList = document.querySelector('.complaints');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
-const loggedInLinks = document.querySelectorAll('.logged-in');
+const loggedInLinks = document.querySelectorAll('.logged-in');         // These all constants r basically getting a reference to the data in the ''
 const accountDetails = document.querySelector('.modal-content5');
 const adminItems = document.querySelectorAll('.admin');
 
+//setupUI function is for controlling what to display and what not to display if theres a user admin or no user currently on the page
 const setupUI = (user) => {
     if(user){
         if(user.admin){
@@ -115,9 +116,11 @@ const setupUI = (user) => {
         const html = `
         <div><h2>Account Information</h2></div><br>
         <div>Logged in as ${user.email}</div> <br>
-        <div>${user.admin ? 'Admin' : ''}</div>
-        `;
-        accountDetails.innerHTML = html;
+        <div>${user.admin ? 'Admin' : ''}</div>     
+        `;//Ternary operator for checking if user or admin to display the words Admin when the user cicks on the account button
+
+        accountDetails.innerHTML = html; //This line is extremely important coupled with line 107 it should be self explanatory
+
         // Blocked means those elements will be shown
         loggedInLinks.forEach(item => item.style.display = 'block');
         loggedOutLinks.forEach(item => item.style.display = 'none');

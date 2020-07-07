@@ -1,3 +1,5 @@
+<!-- I have tried to explain as much as possible with the best possible indentation -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +13,17 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-inverse">
-                <ul class="nav nav-tabs">          <!-- <ul class="nav navbar-nav navbar-right"></ul> -->
-                    <li class="logged-out" role="presentation" style="display: none;"><a id="myBtn1">Log In</a></li>
+    <nav class="navbar navbar-inverse">  <!--navbar-inverse is for the black color of the navbar-->
+                <ul class="nav nav-tabs"> <!--U could choose between either nav pills or nav tabs-->
+                    <li class="logged-out" role="presentation" style="display: none;"><a id="myBtn1">Log In</a></li> <!--Logged-out and logged-in is for later getting a reference of which options which r to be displayed-->
                     <li class="logged-out" role="presentation" style="display: none;"><a id="myBtn2">Sign Up</a></li>
-                    <li class="logged-in" role="presentation"  style="display: none;"><a id="myBtn3">Log Out</a></li>
+                    <li class="logged-in" role="presentation"  style="display: none;"><a id="myBtn3">Log Out</a></li> <!--role as presentation is avoidable-->
                     <li class="logged-in" role="presentation"  style="display: none;"><a id="myBtn4">Create Complaint</a></li>
                     <li class="logged-in" role="presentation"  style="display: none;"><a id="myBtn5" class="account">Account</a></li>
-                </ul>
+                </ul> <!--display had to be set to none so that later in the javascript part we can show what we want to-->
     </nav>
     
-    <form class="adminForm admin">
+    <form class="adminForm admin"> <!--2 class names can be given like this adminForm and admin-->
         <input type="email" class="form-control" placeholder="User Email" id="admin-email" required> <br>
         <button type="submit" class="btn btn-primary">Make Admin</button>
     </form>
@@ -33,11 +35,14 @@
         <div id="myModal1" class="modal1">
 
             <!-- Modal content -->
-            <div class="modal-content1">
-                <span class="close1">&times;</span>
+            <div class="modal-content1"> <!--All this code here is for the modal in html-->
+                <span class="close1">&times;</span>                    <!--close1 is for the js stuff needed to close the modal-->    
+                
                 <h2>Please enter your login Details!</h2>
-                <h4 div class="l_alert">Logged in successfully</h4>
-                <form id="loginForm">
+
+                <h4 div class="l_alert">Logged in successfully</h4>  <!--This is the alert which first wont be displayed thats why its display is none in main.css but later when we want to display it we have written that code in the js file-->
+
+                <form id="loginForm">            <!--Normal form and input stuff of bootstrap-->
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
                       <input type="email" class="form-control" id="l_email" placeholder="Email"  required>
@@ -52,6 +57,7 @@
                 </form>
 
             </div>
+        
         </div>
         <div id="myModal2" class="modal2">
     
@@ -110,7 +116,7 @@
                 </div>
         </div>
         
-        <div class="page-header">
+        <div class="page-header">      <!--Page header is just a diff way of inputting info-->
             <h1>Complaints :-</h1>
                 <div class ="complaints">
                     <div class="panel panel-default">
@@ -130,7 +136,7 @@
                 </div>
           </div>
 
-    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase.js"></script> <!--This firebase line has to always be above the remaining script tags always and for easier purposes i just called eberything of firebase instead of only calling what i required-->
     <script src="main.js"></script>
     <script src="auth.js"></script>
 </body>
